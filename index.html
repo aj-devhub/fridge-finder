@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fridge Finder</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Hi</h1>
+
+    <header>
+        <h1>Fridge Finder</h1>
+        <nav>
+            <a href="index.html">Search</a>
+            <a href="favorites.html">Favorites</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <h2>What's in your fridge?</h2>
+            <p>Enter the ingredients you have, separated by commas.</p>
+            
+            <form id="search-form">
+                <input type="text" id="ingredient-input" placeholder="e.g., chicken, rice, broccoli" required>
+                <button type="submit" id="search-btn">Search Recipes</button>
+            </form>
+        </section>
+
+        <!-- The JavaScript will put the recipe cards inside this container -->
+        <section id="results-container" class="results-grid">
+            <!-- Example of what a card will look like (we will generate these with JS later) -->
+        </section>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
