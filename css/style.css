@@ -38,6 +38,7 @@ nav a {
     color: var(--text-main);
     font-weight: 500;
     margin-left: 1.5rem;
+    transition: color 0.3s ease;
 }
 
 nav a:hover {
@@ -50,6 +51,7 @@ main {
     padding: 0 1rem;
 }
 
+/* Search Section */
 .search-section {
     text-align: center;
     margin-bottom: 3rem;
@@ -73,13 +75,13 @@ main {
     border: 2px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
-    transition: all 0.3s ease; /* CSS Transition for focus */
+    transition: all 0.3s ease;
 }
 
 #ingredient-input:focus {
     outline: none;
     border-color: var(--primary);
-    transform: scale(1.02); /* Enlarge on focus */
+    transform: scale(1.02); /* Enlarge input on focus */
 }
 
 button {
@@ -94,14 +96,96 @@ button {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     background-color: #5a52d5;
-    transform: translateY(-2px); /* Lift effect */
+    transform: translateY(-2px);
 }
 
-/* Grid for results */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Results Grid */
 .results-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
+}
+
+/* Recipe Card Styling */
+.recipe-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card Hover Lift */
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.2rem;
+}
+
+.error {
+    color: #C62828; /* Red */
+    font-weight: bold;
+    text-align: center;
+    grid-column: 1 / -1;
+}
+
+.save-btn {
+    margin-top: 1rem;
+    width: 100%;
+    background-color: var(--secondary); /* Uses your Warm Orange color */
+    padding: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.save-btn:hover {
+    background-color: #e68f10;
+}
+
+.remove-btn {
+    margin-top: 1rem;
+    width: 100%;
+    background-color: #C62828; /* Red color for danger/delete */
+    padding: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.remove-btn:hover {
+    background-color: #a32020;
 }
