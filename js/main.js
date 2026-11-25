@@ -1,5 +1,5 @@
 import { fetchRecipes } from './api.js';
-import { saveFavorite } from './storage.js'; // NEW: Import storage function
+import { saveFavorite } from './storage.js'; 
 
 const searchForm = document.getElementById('search-form');
 const ingredientInput = document.getElementById('ingredient-input');
@@ -34,18 +34,28 @@ searchForm.addEventListener('submit', async (event) => {
             const card = document.createElement('div');
             card.classList.add('recipe-card');
 
-            // NEW: Added a Save button to the card
+            // UPDATED: Using a div with a click event for better reliability
             card.innerHTML = `
-                <img src="${recipe.image}" alt="${recipe.title}">
-                <div class="card-content">
-                    <h3>${recipe.title}</h3>
+                <div class="clickable-area" style="cursor: pointer;">
+                    <img src="${recipe.image}" alt="${recipe.title}">
+                    <div class="card-content">
+                        <h3>${recipe.title}</h3>
+                    </div>
+                </div>
+                <div class="card-info">
                     <p><strong>Uses:</strong> ${recipe.usedIngredientCount} ingredients</p>
                     <p><strong>Missing:</strong> ${recipe.missedIngredientCount} ingredients</p>
                     <button class="save-btn" data-id="${recipe.id}">❤️ Save to Favorites</button>
                 </div>
             `;
 
-            // NEW: Add event listener to the save button
+            // Make the image and title clickable
+            const clickableArea = card.querySelector('.clickable-area');
+            clickableArea.addEventListener('click', () => {
+                window.location.href = `recipe.html?id=${recipe.id}`;
+            });
+
+            // Add event listener to the save button
             const saveBtn = card.querySelector('.save-btn');
             saveBtn.addEventListener('click', () => {
                 saveFavorite(recipe);

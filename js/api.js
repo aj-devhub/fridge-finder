@@ -29,3 +29,20 @@ export async function fetchRecipes(ingredients) {
         throw error; 
     }
 }
+
+// Add this to the bottom of api.js
+export async function fetchRecipeDetails(id) {
+    // We use /recipes/{id}/information to get the full details
+    const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`API error: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching recipe details:", error);
+        throw error;
+    }
+}
