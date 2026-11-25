@@ -17,10 +17,23 @@
         <nav>
             <a href="index.html">Search</a>
             <a href="favorites.html">Favorites</a>
+            <a href="about.html">About</a>
         </nav>
     </header>
 
     <main>
+        <section class="pantry-section">
+            <h2>My Pantry (Expiry Alerts)</h2>
+            <form id="pantry-form">
+                <input type="text" id="pantry-item" placeholder="Ingredient (e.g., Milk)" required>
+                <input type="date" id="pantry-date" required>
+                <button type="submit">Add to Pantry</button>
+            </form>
+            <ul id="pantry-list">
+                <!-- JS will put pantry items here -->
+            </ul>
+        </section>
+
         <section class="search-section">
             <h2>What's in your fridge?</h2>
             <p>Enter the ingredients you have, separated by commas.</p>

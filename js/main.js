@@ -1,5 +1,5 @@
 import { fetchRecipes } from './api.js';
-import { saveFavorite } from './storage.js'; 
+import { saveFavorite, getPantry, savePantryItem, removePantryItem } from './storage.js'; 
 
 const searchForm = document.getElementById('search-form');
 const ingredientInput = document.getElementById('ingredient-input');
@@ -71,3 +71,59 @@ searchForm.addEventListener('submit', async (event) => {
         searchBtn.disabled = false;
     }
 });
+
+
+
+
+
+// --- PANTRY LOGIC ---
+const pantryForm = document.getElementById('pantry-form');
+const pantryList = document.getElementById('pantry-list');
+
+function renderPantry() {
+    const pantry = getPantry();
+    pantryList.innerHTML = "";
+
+    const today = new Date();
+
+    pantry.forEach((item, index) => {
+        const expiryDate = new Date(item.expiry);
+        
+        // Calculate difference in days
+        const timeDiff = expiryDate.getTime() - today.getTime();
+        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+        const li = document.createElement('li');
+        
+        // If expiring in 3 days or less, add the red class
+        const warningClass = (daysDiff <= 3 && daysDiff >= 0) ? 'expiring-soon' : '';
+
+        li.innerHTML = `
+            <span class="${warningClass}">${item.name} - Expires: ${item.expiry} ${warningClass ? '(Soon!)' : ''}</span>
+            <button class="remove-pantry-btn" data-index="${index}" style="padding: 0.2rem 0.5rem; font-size: 0.8rem; background-color: #C62828;">X</button>
+        `;
+
+        // Remove button logic
+        const removeBtn = li.querySelector('.remove-pantry-btn');
+        removeBtn.addEventListener('click', () => {
+            removePantryItem(index);
+            renderPantry();
+        });
+
+        pantryList.appendChild(li);
+    });
+}
+
+// Listen for new pantry item
+pantryForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('pantry-item').value;
+    const expiry = document.getElementById('pantry-date').value;
+
+    savePantryItem({ name, expiry });
+    pantryForm.reset();
+    renderPantry();
+});
+
+// Load pantry on page start
+renderPantry();

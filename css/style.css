@@ -259,3 +259,58 @@ button:disabled {
 .back-btn:hover {
     text-decoration: underline;
 }
+
+.about-section {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-section p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+
+
+
+.pantry-section {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+}
+
+#pantry-form {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+#pantry-form input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#pantry-list {
+    list-style-type: none;
+}
+
+#pantry-list li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* THIS IS THE EXPIRY ALERT CSS */
+.expiring-soon {
+    color: #C62828; /* Red */
+    font-weight: bold;
+}
